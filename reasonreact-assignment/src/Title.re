@@ -1,3 +1,3 @@
 [@react.component]
 let make = (~name) =>
-    <div>{ReasonReact.string("Name: " ++ name)} </div>;
+    <div style=(ReactDOM.Style.make(~fontSize="50px", ()))>{ReasonReact.string("Name: " ++ name)} </div>;
