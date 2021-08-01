@@ -6,18 +6,26 @@ type colorsquare = {
 type state = {colorsquares: array(colorsquare)};
 
 let initialiseColor = () => {
+    let color_array = [];
+    let combined = [];
     let color = ref("#");
     let possiblechars = "0123456789ABCDEF";
 
-    /* append 6 randomly selected possible chars to color */
-    for (i in 0 to 5){
-        print_int(i);
-        /* randomly select index from 0-15 */
-        let select_char = possiblechars.[Random.int(16)];
-        let select_str = String.make(1, select_char);
-        color := color^ ++ select_str;
-    };
-    color^;
+    /* want 9 colors */
+    for (i in 0 to 9){
+
+        /* append 6 randomly selected possible chars to color */
+        for (i in 0 to 5){
+            print_int(i);
+            /* randomly select index from 0-15 */
+            let select_char = possiblechars.[Random.int(16)];
+            let select_str = String.make(1, select_char);
+            color := color^ ++ select_str;
+        };
+        let color_array = [color^];
+        let combined = Array.Append(combined, [color^]);
+    }
+    combined;
 };
 
 [@react.component]
@@ -58,7 +66,13 @@ let make = () => {
     ); */
 
     <div>
-        <div style=(ReactDOM.Style.make(~backgroundColor=hex, ~height="80px", ~width="80px", ()))/>
+        <div style=(ReactDOM.Style.make(~backgroundColor=hex[0], ~height="80px", ~width="80px", ()))/>
+        <div>{React.string(hex)}</div>
+        <div style=(ReactDOM.Style.make(~backgroundColor=hex[1], ~height="80px", ~width="80px", ()))/>
+        <div>{React.string(hex)}</div>
+        <div style=(ReactDOM.Style.make(~backgroundColor=hex[2], ~height="80px", ~width="80px", ()))/>
+        <div>{React.string(hex)}</div>
+        <div style=(ReactDOM.Style.make(~backgroundColor=hex[3], ~height="80px", ~width="80px", ()))/>
         <div>{React.string(hex)}</div>
         /* <button onClick={_ => isPressed(pressed => buttonPress(pressed))}>{React.string("Randomise")}</button> */
         <button onClick={_ => setHex(hex => randomColorGenerator(hex))}>{React.string("Randomise")}</button>

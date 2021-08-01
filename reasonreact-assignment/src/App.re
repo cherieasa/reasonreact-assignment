@@ -2,14 +2,16 @@
 let make = () =>
 <div>
     <Title name="Cherie" />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-    <ColorSquare />
-
+    /* <ColorArr /> */
+    <ColorRef />    
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    <ColorRef /> 
+    /* <LocalRandomiser /> 
+    <ColorSquare /> */
 </div>;

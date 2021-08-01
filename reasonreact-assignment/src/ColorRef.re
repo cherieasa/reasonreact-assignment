@@ -8,6 +8,7 @@ type state = {colorsquares: array(colorsquare)};
 let initialiseColor = () => {
     let color = ref("#");
     let possiblechars = "0123456789ABCDEF";
+    let modify = possiblechars.split
 
     /* append 6 randomly selected possible chars to color */
     for (i in 0 to 5){
@@ -17,6 +18,7 @@ let initialiseColor = () => {
         let select_str = String.make(1, select_char);
         color := color^ ++ select_str;
     };
+    Js.log(color^);
     color^;
 };
 
@@ -24,18 +26,25 @@ let initialiseColor = () => {
 [@react.component]
 let make = () => {
     let hexColor = React.useRef(initialiseColor());
+    let (pressed, isPressed) = React.useState(_ => false);
+
+    let buttonPress = (pressed) => {
+        let pressed = !pressed;
+        pressed;
+    };
 
     React.useEffect1(
         () => {
             hexColor.current = initialiseColor();
           None
         },
-        [|hexColor.current|],
+        [|pressed|],
     );
 
     <div>
-        <div style=(ReactDOM.Style.make(~backgroundColor=hexColor.current, ~height="80px", ~width="80px", ()))/>
+        <div style=(ReactDOM.Style.make(~backgroundColor=hexColor.current, ~height="80px", ~width="80px", ~marginBottom="5px", ()))/>
         <div>{React.string({hexColor.current})}</div>
-        <button onClick={_ => hexColor.current = initialiseColor()}>{React.string("Randomise")}</button>
+        <button onClick={_ => isPressed(pressed => buttonPress(pressed))}>{React.string("Randomise")}</button>
+        /* <button onClick={_ => hexColor.current = initialiseColor()}>{React.string("Randomise")}</button> */
     </div>;
 }
