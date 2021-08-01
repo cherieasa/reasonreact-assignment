@@ -12,9 +12,9 @@ npm start
 
 ## src/components
 
--- folder containing components of the webpage - title, color square rows and button
+folder containing components of the webpage - title, color square rows and button
 
 ## src/utils
 
--- folder containing functions used
+folder containing functions used
 
